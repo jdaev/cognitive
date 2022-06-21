@@ -1,7 +1,13 @@
 import { useState, useEffect } from "react";
 import "bulma/css/bulma.min.css";
 import { Table } from "react-bulma-components";
-import { months, weekday } from "./constants";
+import { weekday } from "./constants";
+import {
+  get25HourChanges,
+  get25HourChangePercent,
+  getXDaysBeforeDate,
+  getStringDate,
+} from "./utils";
 
 function App() {
   const [error, setError] = useState(null);
@@ -32,27 +38,6 @@ function App() {
       );
   }, []);
 
-  function calculate25HourChanges(start, finish) {
-    return (finish - start).toFixed(2);
-  }
-
-  function calculate25HourChangePercent(start, finish) {
-    return (((finish - start) / start) * 100).toFixed(2);
-  }
-
-  function getXDaysBeforeDate(start, interval) {
-    var days = 86400000; //number of milliseconds in a day
-    var xDaysAgo = new Date(start - interval * days);
-    return xDaysAgo;
-  }
-
-  function getStringDate(date) {
-    var parsedDate = new Date(date);
-    var month = months[parsedDate.getMonth()];
-
-    return month + " " + parsedDate.getDate() + ", " + parsedDate.getFullYear();
-  }
-
   if (error) {
     return <>{error.message}</>;
   } else if (!isLoaded) {
@@ -69,13 +54,10 @@ function App() {
             </td>
             <td>{items.prices[i][1].toFixed(2)}</td>
             <td>
-              {calculate25HourChanges(
-                items.prices[i][1],
-                items.prices[i + 1][1]
-              )}
+              {get25HourChanges(items.prices[i][1], items.prices[i + 1][1])}
             </td>
             <td>
-              {calculate25HourChangePercent(
+              {get25HourChangePercent(
                 items.prices[i][1],
                 items.prices[i + 1][1]
               )}
