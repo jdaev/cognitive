@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import "bulma/css/bulma.min.css";
-import { Table } from "react-bulma-components";
+import { Block, Box, Table } from "react-bulma-components";
 import { weekday } from "./constants";
 import {
   get25HourChanges,
@@ -8,6 +8,7 @@ import {
   getXDaysBeforeDate,
   getStringDate,
 } from "./utils";
+import SearchCoin from "./Search";
 
 function App() {
   const [error, setError] = useState(null);
@@ -69,20 +70,27 @@ function App() {
       );
     }
     return (
-      <Table>
-        <tbody>
-          <tr>
-            <th>Date</th>
-            <th>Day Of The Week</th>
-            <th>Prices</th>
-            <th>24 Hour Changes</th>
-            <th>Change %</th>
-            <th>Market Caps</th>
-            <th>Total Volume</th>
-          </tr>
-        </tbody>
-        {rows}
-      </Table>
+      <Box style={{ width: 1280, margin: 'auto' }} alignContent="center">
+        <Block>
+          <SearchCoin></SearchCoin>
+        </Block>
+        <Block>
+          <Table align="center">
+            <tbody>
+              <tr>
+                <th>Date</th>
+                <th>Day Of The Week</th>
+                <th>Prices</th>
+                <th>24 Hour Changes</th>
+                <th>Change %</th>
+                <th>Market Caps</th>
+                <th>Total Volume</th>
+              </tr>
+            </tbody>
+            {rows}
+          </Table>
+        </Block>
+      </Box>
     );
   }
 }
