@@ -1,31 +1,7 @@
 import { useState, useEffect } from "react";
 import "bulma/css/bulma.min.css";
 import { Table } from "react-bulma-components";
-
-const weekday = [
-  "Sunday",
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Saturday",
-];
-
-const months = [
-  "January",
-  "February",
-  "March",
-  "April",
-  "May",
-  "June",
-  "July",
-  "August",
-  "September",
-  "October",
-  "November",
-  "December",
-];
+import { months, weekday } from "./constants";
 
 function App() {
   const [error, setError] = useState(null);
