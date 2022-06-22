@@ -46,7 +46,7 @@ function App() {
         <Form.Label>Search Coin</Form.Label>
         <Form.Control>
           <Form.Input
-            placeholder="e.g. Bitcoin"
+            placeholder="e.g. Bitcoin, Arweave, Dowcoin, Efinity (CoinGecko Coin Id)"
             type="text"
             onChange={(e) => handleSearchSubmit(e.target.value)}
           />
@@ -65,7 +65,7 @@ function App() {
       return <>loading...</>;
     } else {
       var rows = [];
-      for (var i = 0; i < numberOfDays; i++) {
+      for (var i = 0; i < items.prices.length -1; i++) {
         rows.push(
           <tbody key={i}>
             <tr>
@@ -95,7 +95,7 @@ function App() {
             <tr>
               <th>Date</th>
               <th>Day Of The Week</th>
-              <th>Prices</th>
+              <th>1 {search.toUpperCase()} to {currency.toUpperCase()} </th>
               <th>24 Hour Changes</th>
               <th>Change %</th>
               <th>Market Caps</th>
